@@ -15,8 +15,7 @@ public class Club {
 	public Resultado agregarSocio(String nombre, int edad) {
 		Persona SocioAAgregar = null;
 		Resultado resu = Resultado.YA_EXISTE;	
-		
-		SocioAAgregar = buscarPersona(nombre);
+		SocioAAgregar = buscarPersona(nombre); //hace esto para dijarse si existe, si no lo hace, lo agrega
 		
 		if (SocioAAgregar == null) {
 			this.socios.add(new Persona(nombre, edad));
@@ -29,31 +28,28 @@ public class Club {
 	// método auxiliar de agregarSocio, llamado buscarPersona
 	private Persona buscarPersona(String nombre) {
 		Persona personaEncontrada = null;
-		int pos = 0;
+		int index = 0;
 
-		while (pos < this.socios.size() && personaEncontrada == null)
-			if (this.socios.get(pos).getNombre().equals(nombre))														
-				personaEncontrada = this.socios.get(pos); 
+		while (index < this.socios.size() && personaEncontrada == null)
+			if (this.socios.get(index).getNombre().equals(nombre))														
+				personaEncontrada = this.socios.get(index); 
 			else
-				pos++;
+				index++;
 
 		return personaEncontrada;
 	}
 
 	
 	public Resultado establecerAmistad(String nombre1, String nombre2) {
-		Resultado resu = Resultado.NOMBRES_IGUALES;
-		Persona persona1 = new Persona("nombre1");
-		Persona persona2 = new Persona("nombre2");
+		Resultado resu = null;
+		Persona persona1 = buscarPersona(nombre1);
+		Persona persona2 = buscarPersona(nombre2);
 		int index;
 		
 		// Utiliza el método auxiliar esAmigo, de la clase Persona. Si no es amigo, puede establecer amistad, si lo es, no
 		
-		if (persona1.getAmigos() == null) {
-			persona1.getAmigos().add(persona2);
-			persona2.getAmigos().add(persona1);
-			resu = Resultado.OK;
-		}
+		if (nombre1.equals(nombre2))
+			resu = Resultado.NOMBRES_IGUALES;
 		
 		else if (!persona1.esAmigo(persona2.getNombre())){
 			persona1.getAmigos().add(persona2);
@@ -65,16 +61,48 @@ public class Club {
 				resu = Resultado.YA_SON_AMIGOS;
 			
 		//utiliza buscarPersona en el nombre de cada persona creada
+		
+		else if (buscarPersona(persona1.getNombre() == null || buscarPersona(persona2.getNombre() == null)
+			resu = Resultado.NO_EXISTE;
+			
+		return resu;
+	}
+	
+	public Resultado deshacerAmistad(String nombre1, String nombre2) {
+		Resultado resu = null;
+		Persona persona1 = new Persona("nombre1");
+		Persona persona2 = new Persona("nombre2");
+		int index;
+		
+		if (nombre1.equals(nombre2))
+			resu = Resultado.NOMBRES_IGUALES;
+		
+		else if (persona1.esAmigo(persona2.getNombre())){
+			persona1.getAmigos().remove(persona2);
+			persona2.getAmigos().remove(persona1);		
+			resu = Resultado.OK;				
+		}	 
+			
+		//utiliza buscarPersona en el nombre de cada persona creada
 		else if (buscarPersona(persona1.getNombre()) == null || buscarPersona(persona2.getNombre()) == null)
 			resu = Resultado.NO_EXISTE;
 			
 		return resu;
 	}
-
-		
 	
-			
-				
+	public ArrayList<Persona> devolverNombreEdadAmigos(String nombre) {
+		ArrayList<Persona> amigosBuscados;
+		Persona amigo;
+		
+		amigo = buscarPersona(nombre);
+		
+		amigosBuscados = amigo.getAmigos();
+		for (Persona amigos: amigosBuscados)
+			System.out.println(amigos);		
+		return amigosBuscados;
+		
+	}
+
 		
 		
 	}
