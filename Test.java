@@ -1,4 +1,4 @@
-	package clubSportivoVecinal;
+package clubSportivoVecinal;
 
 public class Test {
 
@@ -45,3 +45,4 @@ public class Test {
 	}
 
 }
+
