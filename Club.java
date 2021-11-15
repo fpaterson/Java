@@ -1,5 +1,3 @@
-package clubSportivoVecinal;
-
 import java.util.ArrayList;
 
 public class Club {
@@ -15,7 +13,7 @@ public class Club {
 	public Resultado agregarSocio(String nombre, int edad) {
 		Persona SocioAAgregar = null;
 		Resultado resu = Resultado.YA_EXISTE;	
-		SocioAAgregar = buscarPersona(nombre); //hace esto para dijarse si existe, si no lo hace, lo agrega
+		SocioAAgregar = buscarPersona(nombre); //hace esto para fijarse si existe, si no lo hace, lo agrega
 		
 		if (SocioAAgregar == null) {
 			this.socios.add(new Persona(nombre, edad));
@@ -36,7 +34,7 @@ public class Club {
 			else
 				index++;
 
-		return personaEncontrada;
+			return personaEncontrada;
 	}
 
 	
@@ -47,23 +45,21 @@ public class Club {
 		int index;
 		
 		// Utiliza el método auxiliar esAmigo, de la clase Persona. Si no es amigo, puede establecer amistad, si lo es, no
-		
-		if (nombre1.equals(nombre2))
-			resu = Resultado.NOMBRES_IGUALES;
-		
-		else if (!persona1.esAmigo(persona2.getNombre())){
-			persona1.getAmigos().add(persona2);
-			persona2.getAmigos().add(persona1);		
-			resu = Resultado.OK;				
-		}
-		
-		else if (persona1.esAmigo(persona2.getNombre()))
-				resu = Resultado.YA_SON_AMIGOS;
 			
-		//utiliza buscarPersona en el nombre de cada persona creada
-		
-		else if (buscarPersona(persona1.getNombre() == null || buscarPersona(persona2.getNombre() == null)
-			resu = Resultado.NO_EXISTE;
+			if (persona1.getNombre().equals("-") || persona2.getNombre().equals("-") )				
+				resu = Resultado.NO_EXISTE;
+			
+			else if (nombre1.equals(nombre2))
+				resu = Resultado.NOMBRES_IGUALES;
+			
+			else if (!persona1.esAmigo(persona2.getNombre())){
+				persona1.getAmigos().add(persona2);
+				persona2.getAmigos().add(persona1);		
+				resu = Resultado.OK;				
+			}
+			
+			else if (persona1.esAmigo(persona2.getNombre()))
+					resu = Resultado.YA_SON_AMIGOS;
 			
 		return resu;
 	}
