@@ -1,0 +1,21 @@
+package linear_search;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Train train1 = new Train();
+		Train train2 = new Train();
+		Train train3 = new Train();
+		
+		Searcher searcher = new Searcher();
+		
+		System.out.println(train1);
+		System.out.println(train2);
+		System.out.println(train3);
+		
+		System.out.println(searcher.searchTrain(1));
+	
+	}
+
+}
