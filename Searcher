@@ -1,0 +1,32 @@
+package linear_search;
+
+import java.util.ArrayList;
+
+public class Searcher {
+	
+	private ArrayList <Train> trains;
+	
+	public Searcher() {
+		trains = new ArrayList<>();
+	}
+	
+	// this search is not working
+	public boolean searchTrain(int nroId) {
+		boolean found = false;
+		Train trenBuscado = null;
+		int i = 0;
+
+		while (i < trains.size() && trenBuscado == null) {
+			if (trains.get(i).getNroId() == nroId) {
+				trenBuscado = trains.get(i);
+				found = true;
+			} else {
+				i++;
+			}
+		}
+
+		return found;
+
+	}
+
+}
