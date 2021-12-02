@@ -18,8 +18,10 @@ public class Searcher {
 
 		while (i < trains.size() && trenBuscado == null) {
 			if (trains.get(i).getNroId() == nroId) {
-				trenBuscado = trains.get(i);
+				trenBuscado = trains.get(i);	
+				trains.add(trenBuscado); // I have now added the trenbuscado to the train ArrayList
 				found = true;
+				
 			} else {
 				i++;
 			}
